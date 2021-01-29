@@ -6,7 +6,7 @@ interface Props {
 
 const Footer: React.FC<Props> = ({ hasDarkModeEnabled }) => {
   return (
-    <footer className="text-gray-600 dark:bg-gray-800 border-t-2 border-gray-200 dark:border-gray-700 body-font color-transition">
+    <footer className="text-gray-600 dark:bg-gray-700 border-t-2 border-gray-200 dark:border-gray-700 body-font color-transition">
       <div className="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
         <a className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
           {hasDarkModeEnabled ? (

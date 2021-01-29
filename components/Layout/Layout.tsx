@@ -37,8 +37,8 @@ const Layout: React.FC = ({ children }) => {
       />
       <div className="overflow-y-auto bg-white dark:bg-gray-900">
         {children}
+        <Footer hasDarkModeEnabled={currentTheme === "dark"} />
       </div>
-      <Footer hasDarkModeEnabled={currentTheme === "dark"} />
     </div>
   );
 };
