@@ -2,7 +2,7 @@ import React from "react";
 
 const LoadingCard = () => {
   return (
-    <div className="rounded-2xl shadow-lg flex overflow-hidden flex-col w-80 bg-gray-200 dark:bg-gray-600">
+    <div className="rounded-2xl shadow-lg flex overflow-hidden flex-col bg-gray-200 dark:bg-gray-600">
       <div className="flex flex-row justify-center">
         <div className="animate-pulse w-52 h-52 bg-gray-400  rounded-full my-5 mx-10" />
       </div>

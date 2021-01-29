@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { useEffect } from "react";
 import PokemonHero from "../components/Home/PokemonHero";
+import StarterPokemon from "../components/Home/StarterPokemon";
 import LoadingCard from "../components/Shared/LoadingCard";
 import PokemonCard from "../components/Shared/PokemonCard";
 import styles from "../styles/Home.module.css";
@@ -31,6 +32,8 @@ const Home = () => {
         imageALT="Pikachu"
         imageURL="assets/pikachu.png"
       />
+
+      <StarterPokemon />
 
       {/* Generation II Hero Section */}
       <PokemonHero
