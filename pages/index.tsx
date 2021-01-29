@@ -22,18 +22,19 @@ const Home = () => {
       <PokemonHero
         title="Generation I"
         description={
-          'This Pokédex, which was introduced in Generation I, is the first \
-              regional Pokédex. The numbering in this Pokédex would serve as the \
-              basis for the official listing of all Pokémon introduced, with \
-              subsequent generations\' Pokémon being added on to the end, with \
-              the name of "Old Pokédex" in Generation II and then the "National \
-              Pokédex" ever since, starting with Generation III.'
+          "The first generation of Pokémon games, known among older fans as the color generation or \
+          the chromatic generation due to the names of the versions released, is the initial set of \
+          four Pokémon games released."
         }
         imageALT="Pikachu"
         imageURL="assets/pikachu.png"
       />
 
-      <StarterPokemon />
+      <StarterPokemon
+        title="Starter Pokemon"
+        description="Here's a list of the starter pokemon for Generation I."
+        offset={0}
+      />
 
       {/* Generation II Hero Section */}
       <PokemonHero
@@ -46,6 +47,13 @@ const Home = () => {
         imageALT="Bayleef"
         imageURL="assets/bayleef.png"
       />
+
+      <StarterPokemon
+        title="Starter Pokemon"
+        description="Here's a list of the starter pokemon for Generation II."
+        offset={151}
+      />
+      <div className="mb-20"></div>
     </div>
   );
 };

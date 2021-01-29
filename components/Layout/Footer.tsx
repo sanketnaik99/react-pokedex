@@ -8,7 +8,7 @@ const Footer: React.FC<Props> = ({ hasDarkModeEnabled }) => {
   return (
     <footer className="text-gray-600 dark:bg-gray-700 border-t-2 border-gray-200 dark:border-gray-700 body-font color-transition">
       <div className="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
-        <a className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
+        <div className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
           {hasDarkModeEnabled ? (
             <img
               src="assets/pokedex-logo-dark.png"
@@ -22,7 +22,7 @@ const Footer: React.FC<Props> = ({ hasDarkModeEnabled }) => {
               className="h-8 sm:h-10"
             />
           )}
-        </a>
+        </div>
         <p className="text-md text-gray-500 dark:text-gray-100 color-transition sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 pt-3 pb-2 sm:mt-0 mt-4">
           Made by
           <a
@@ -31,7 +31,7 @@ const Footer: React.FC<Props> = ({ hasDarkModeEnabled }) => {
             rel="noopener noreferrer"
             target="_blank"
           >
-            @sanketnaik99
+            Sanket Naik
           </a>
         </p>
         <span className="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">

@@ -8,16 +8,18 @@ const Layout: React.FC = ({ children }) => {
 
   useEffect(() => {
     // Get stored theme.
+    // Initially there is no theme in storage so storedTheme will be null.
     const storedTheme = localStorage.getItem("theme");
 
-    // Check if theme has been stored or if it is the first load.
-    if (!hasLoaded && storedTheme) {
-      setTheme(storedTheme);
+    // Check if theme has been stored and if it is the first load.
+    // If the theme has been stored in local storage and hasLoaded is false -> Then make the theme from localstorage as the currentTheme.
+    if (hasLoaded === false && storedTheme) {
       setLoaded(true);
+      setTheme(storedTheme);
     }
 
     // If currentTheme is updated, update LocalStorage.
-    if (currentTheme !== storedTheme) {
+    if (currentTheme !== storedTheme && hasLoaded) {
       localStorage.setItem("theme", currentTheme);
     }
   }, [currentTheme]);
@@ -31,7 +33,7 @@ const Layout: React.FC = ({ children }) => {
     >
       <Navbar
         handleToggle={() => {
-          currentTheme == "dark" ? setTheme("light") : setTheme("dark");
+          currentTheme === "dark" ? setTheme("light") : setTheme("dark");
         }}
         hasDarkModeEnabled={currentTheme === "dark"}
       />
