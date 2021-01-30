@@ -13,25 +13,25 @@ const Navbar: React.FC<Props> = ({ handleToggle, hasDarkModeEnabled }) => {
       <div className="flex justify-between items-center">
         {hasDarkModeEnabled ? (
           <Link href="/">
-            <span>
+            <a>
               <Image
                 src="/assets/pokedex-logo-dark.png"
                 alt="PokeDex"
                 width={159}
                 height={40}
               />
-            </span>
+            </a>
           </Link>
         ) : (
           <Link href="/">
-            <span>
+            <a>
               <Image
                 src="/assets/pokedex-logo-light.png"
                 alt="PokeDex"
                 width={159}
                 height={40}
               />
-            </span>
+            </a>
           </Link>
         )}
         <div

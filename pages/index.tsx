@@ -1,12 +1,17 @@
+import axios from "axios";
+import { GetStaticProps } from "next";
 import Head from "next/head";
-import { useEffect } from "react";
+import Link from "next/link";
 import PokemonHero from "../components/Home/PokemonHero";
 import StarterPokemon from "../components/Home/StarterPokemon";
-import LoadingCard from "../components/Shared/LoadingCard";
-import PokemonCard from "../components/Shared/PokemonCard";
 import styles from "../styles/Home.module.css";
 
-const Home = () => {
+interface Props {
+  gen1: Pokemon[];
+  gen2: Pokemon[];
+}
+
+const Home: React.FC<Props> = ({ gen1, gen2 }) => {
   return (
     <div className={styles.container}>
       <Head>
@@ -47,7 +52,7 @@ const Home = () => {
           content="https://pokedex.sanketnaik.dev/assets/pokedex-banner.png"
         />
       </Head>
-
+      <h1 className="hidden">PokeDex</h1>
       {/* Generation I Hero Section */}
       <PokemonHero
         title="Generation I"
@@ -60,11 +65,26 @@ const Home = () => {
         imageURL="assets/pikachu.png"
       />
 
+      {/* Starter Pokemon Grid */}
       <StarterPokemon
         title="Starter Pokemon"
         description="Here's a list of the starter pokemon for Generation I."
-        generation={1}
+        pokemon={gen1}
       />
+
+      {/* Gen 1 View All Button */}
+      <div className="flex flex-row justify-center mt-12">
+        <div>
+          <Link href="/generation/1">
+            <button
+              className="w-80 bg-gray-800 text-white dark:text-red-500 dark:bg-white color-transition font-bold uppercase px-8 py-2 rounded-lg shadow-md hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
+              type="button"
+            >
+              View All
+            </button>
+          </Link>
+        </div>
+      </div>
 
       {/* Generation II Hero Section */}
       <PokemonHero
@@ -78,14 +98,53 @@ const Home = () => {
         imageURL="assets/bayleef.png"
       />
 
+      {/* Starter Pokemon Grid */}
       <StarterPokemon
         title="Starter Pokemon"
         description="Here's a list of the starter pokemon for Generation II."
-        generation={2}
+        pokemon={gen2}
       />
+
+      {/* Gen 2 View All Button */}
+      <div className="flex flex-row justify-center mt-12">
+        <Link href="/generation/2">
+          <button
+            className="w-80 bg-gray-800 text-white dark:text-red-500 dark:bg-white color-transition font-bold uppercase px-8 py-2 rounded-lg shadow-md hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
+            type="button"
+          >
+            View All
+          </button>
+        </Link>
+      </div>
+
       <div className="mb-20"></div>
     </div>
   );
+};
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const gen1Results: CallResult[] = (
+    await axios.get<PokemonListResult>(
+      "https://pokeapi.co/api/v2/pokemon?limit=9&offset=0"
+    )
+  ).data.results;
+  let gen1Pokemon: Pokemon[] = [];
+  for (let result of gen1Results) {
+    const pokemon: Pokemon = (await axios.get<Pokemon>(result.url)).data;
+    gen1Pokemon.push(pokemon);
+  }
+
+  const gen2Results: CallResult[] = (
+    await axios.get<PokemonListResult>(
+      "https://pokeapi.co/api/v2/pokemon?limit=9&offset=151"
+    )
+  ).data.results;
+  let gen2Pokemon: Pokemon[] = [];
+  for (let result of gen2Results) {
+    const pokemon: Pokemon = (await axios.get<Pokemon>(result.url)).data;
+    gen2Pokemon.push(pokemon);
+  }
+  return { props: { gen1: gen1Pokemon, gen2: gen2Pokemon } };
 };
 
 export default Home;

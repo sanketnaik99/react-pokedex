@@ -7,7 +7,7 @@ const NotFound = () => {
       <PokemonHero
         title="Page Not Found"
         description="Looks like the page you're looking for wasn't found."
-        imageURL="assets/eevee.png"
+        imageURL="/assets/eevee.png"
         imageALT="Eevee"
       />
     </div>

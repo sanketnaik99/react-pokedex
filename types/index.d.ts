@@ -22,6 +22,13 @@ interface PokemonType {
   };
 }
 
+interface PokemonListResult {
+  count: number;
+  next: string;
+  previous: string;
+  results: CallResult[];
+}
+
 interface Sprites {
   back_default: string;
   back_female: string;
