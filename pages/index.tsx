@@ -33,7 +33,7 @@ const Home = () => {
       <StarterPokemon
         title="Starter Pokemon"
         description="Here's a list of the starter pokemon for Generation I."
-        offset={0}
+        generation={1}
       />
 
       {/* Generation II Hero Section */}
@@ -51,7 +51,7 @@ const Home = () => {
       <StarterPokemon
         title="Starter Pokemon"
         description="Here's a list of the starter pokemon for Generation II."
-        offset={151}
+        generation={2}
       />
       <div className="mb-20"></div>
     </div>
