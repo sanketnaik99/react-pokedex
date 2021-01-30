@@ -95,21 +95,21 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       games Pokémon Gold and Silver, set in the Johto region.";
   }
 
-  const resultList: CallResult[] = (
-    await axios.get<PokemonListResult>(
-      `https://pokeapi.co/api/v2/pokemon?limit=${
-        generationLimits[genNumber - 1]
-      }&offset=${generationOffsets[genNumber - 1]}`
-    )
-  ).data.results;
+  //   const resultList: CallResult[] = (
+  //     await axios.get<PokemonListResult>(
+  //       `https://pokeapi.co/api/v2/pokemon?limit=${
+  //         generationLimits[genNumber - 1]
+  //       }&offset=${generationOffsets[genNumber - 1]}`
+  //     )
+  //   ).data.results;
   let pokemonList: Pokemon[] = [];
-  for (let result of resultList) {
-    const pokemon: Pokemon = (await axios.get<Pokemon>(result.url)).data;
-    pokemonList.push(pokemon);
-  }
-  return {
-    props: { pokemon: pokemonList, title: title, description: description },
-  };
+  //   for (let result of resultList) {
+  //     const pokemon: Pokemon = (await axios.get<Pokemon>(result.url)).data;
+  //     pokemonList.push(pokemon);
+  //   }
+  //   return {
+  //     props: { pokemon: pokemonList, title: title, description: description },
+  //   };
 };
 
 export default PokemonGeneration;
