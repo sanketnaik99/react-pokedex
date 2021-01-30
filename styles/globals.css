@@ -9,7 +9,7 @@
   @apply transition-colors duration-500 ease-out;
 }
 .badge {
-  @apply font-bold text-white py-1 rounded-full w-max px-5 mx-1 shadow-md;
+  @apply font-bold text-white py-1 rounded-full w-max px-5 shadow-md;
 }
 
 /* Pokemon Badge Gradients */

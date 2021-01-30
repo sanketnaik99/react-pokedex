@@ -1,4 +1,6 @@
 import React from "react";
+import Image from "next/image";
+import Link from "next/link";
 
 interface Props {
   handleToggle: () => void;
@@ -10,17 +12,27 @@ const Navbar: React.FC<Props> = ({ handleToggle, hasDarkModeEnabled }) => {
     <nav className="py-2 px-4 border-b-2 border-gray-200 dark:border-gray-700 bg-white transition-colors duration-500 ease-out dark:bg-gray-800 shadow-lg w-full">
       <div className="flex justify-between items-center">
         {hasDarkModeEnabled ? (
-          <img
-            src="assets/pokedex-logo-dark.png"
-            alt="PokeDex"
-            className="h-10 sm:h-12"
-          />
+          <Link href="/">
+            <span>
+              <Image
+                src="/assets/pokedex-logo-dark.png"
+                alt="PokeDex"
+                width={159}
+                height={40}
+              />
+            </span>
+          </Link>
         ) : (
-          <img
-            src="assets/pokedex-logo-light.png"
-            alt="PokeDex"
-            className="h-10 sm:h-12"
-          />
+          <Link href="/">
+            <span>
+              <Image
+                src="/assets/pokedex-logo-light.png"
+                alt="PokeDex"
+                width={159}
+                height={40}
+              />
+            </span>
+          </Link>
         )}
         <div
           className="py-2 px-4 bg-gray-800 dark:bg-gray-100 transition-colors duration-500 ease-out rounded-lg cursor-pointer text-white dark:text-gray-800 font-bold flex justify-around items-center shadow-sm hover:shadow-md"

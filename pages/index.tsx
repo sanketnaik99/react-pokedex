@@ -7,15 +7,45 @@ import PokemonCard from "../components/Shared/PokemonCard";
 import styles from "../styles/Home.module.css";
 
 const Home = () => {
-  useEffect(() => {
-    // Get Data from PokeAPI
-  });
-
   return (
     <div className={styles.container}>
       <Head>
         <title>Home</title>
         <link rel="icon" href="/favicon.ico" />
+        <meta name="title" content="Pokedex" />
+        <meta
+          name="description"
+          content="A Pokedex App created using Next.js (A ReactJS Framework), Typescript, and TailwindCSS."
+        />
+
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://pokedex.sanketnaik.dev/" />
+        <meta property="og:title" content="Pokedex" />
+        <meta
+          property="og:description"
+          content="A Pokedex App created using Next.js (A ReactJS Framework), Typescript, and TailwindCSS."
+        />
+        <meta
+          property="og:image"
+          content="https://pokedex.sanketnaik.dev/assets/pokedex-banner.png"
+        />
+
+        {/* Twitter */}
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta
+          property="twitter:url"
+          content="https://pokedex.sanketnaik.dev/"
+        />
+        <meta property="twitter:title" content="Pokedex" />
+        <meta
+          property="twitter:description"
+          content="A Pokedex App created using Next.js (A ReactJS Framework), Typescript, and TailwindCSS."
+        />
+        <meta
+          property="twitter:image"
+          content="https://pokedex.sanketnaik.dev/assets/pokedex-banner.png"
+        />
       </Head>
 
       {/* Generation I Hero Section */}

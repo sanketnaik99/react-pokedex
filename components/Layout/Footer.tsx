@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 interface Props {
   hasDarkModeEnabled: boolean;
@@ -10,16 +11,18 @@ const Footer: React.FC<Props> = ({ hasDarkModeEnabled }) => {
       <div className="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
         <div className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
           {hasDarkModeEnabled ? (
-            <img
-              src="assets/pokedex-logo-dark.png"
+            <Image
+              src="/assets/pokedex-logo-dark.png"
               alt="PokeDex"
-              className="h-8 sm:h-10"
+              width={127}
+              height={32}
             />
           ) : (
-            <img
-              src="assets/pokedex-logo-light.png"
+            <Image
+              src="/assets/pokedex-logo-light.png"
               alt="PokeDex"
-              className="h-8 sm:h-10"
+              width={127}
+              height={32}
             />
           )}
         </div>

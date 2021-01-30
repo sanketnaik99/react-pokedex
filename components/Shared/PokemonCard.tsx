@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import Link from "next/link";
 
 interface Props {
   pokemon: Pokemon;
@@ -7,7 +8,10 @@ interface Props {
 const PokemonCard: React.FC<Props> = ({ pokemon }) => {
   // Pokemon Type Badges
   const typesBadges = pokemon.types.map((type) => (
-    <div className={["badge", type.type.name].join(" ")} key={type.type.name}>
+    <div
+      className={["badge capitalize mx-1", type.type.name].join(" ")}
+      key={type.type.name}
+    >
       {type.type.name}
     </div>
   ));
@@ -46,9 +50,11 @@ const PokemonCard: React.FC<Props> = ({ pokemon }) => {
           <span className="font-medium text-lg">HP</span>
           <span className="font-light text-lg">{hp}</span>
         </div>
-        <div className="mt-4 mb-3 py-2 px-4 mx-8 rounded-xl shadow-sm  cursor-pointer font-bold bg-gradient-to-br from-red-400 to-red-600 text-white flex flex-row justify-center hover:shadow-lg">
-          <span>Learn More</span>
-        </div>
+        <Link href={`/pokemon/${pokemon.id}`}>
+          <a className="mt-4 mb-3 py-2 px-4 mx-8 rounded-xl shadow-sm  cursor-pointer font-bold bg-gradient-to-br from-red-400 to-red-600 text-white flex flex-row justify-center hover:shadow-lg">
+            Learn More
+          </a>
+        </Link>
       </div>
     </div>
   );
