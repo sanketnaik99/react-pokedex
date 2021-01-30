@@ -9,8 +9,6 @@ interface Props {
 }
 
 const PokemonDetail: React.FC<Props> = ({ pokemon }) => {
-  const colors = ["green", "red", "blue", "pink", "indigo", "yellow"];
-
   // Making the name Uppercase
   const pokemonName =
     pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
@@ -34,8 +32,7 @@ const PokemonDetail: React.FC<Props> = ({ pokemon }) => {
           <span
             className={[
               "text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full",
-              `text-${colors[index]}-800`,
-              `bg-${colors[index]}-100`,
+              `${stat.stat.name}-title`,
             ].join(" ")}
           >
             {stat.stat.name}
@@ -45,8 +42,7 @@ const PokemonDetail: React.FC<Props> = ({ pokemon }) => {
           <span
             className={[
               "text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full color-transition",
-              `text-${colors[index]}-800`,
-              `dark:text-${colors[index]}-800 dark:bg-${colors[index]}-100`,
+              `${stat.stat.name}-value`,
             ].join(" ")}
           >
             {stat.base_stat}
@@ -56,14 +52,14 @@ const PokemonDetail: React.FC<Props> = ({ pokemon }) => {
       <div
         className={[
           "overflow-hidden h-2 mb-4 text-xs flex rounded",
-          `bg-${colors[index]}-200`,
+          `${stat.stat.name}-progress-bg`,
         ].join(" ")}
       >
         <div
           style={{ width: `${stat.base_stat}%` }}
           className={[
             "shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center",
-            `bg-${colors[index]}-500`,
+            `${stat.stat.name}-progress-value`,
           ].join(" ")}
         ></div>
       </div>
@@ -118,14 +114,14 @@ const PokemonDetail: React.FC<Props> = ({ pokemon }) => {
         />
       </Head>
 
-      <section className="text-gray-600 body-font h-screen pt-4 md:pt-20 mb-20">
+      <section className="text-gray-600 body-font min-h-screen pt-4 md:pt-20 mb-20">
         <div className="container mx-auto flex px-5 py-20 md:flex-row flex-col-reverse items-center">
           <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left  items-center text-center">
-            <h1 className="font-body sm:text-5xl text-5xl mb-4 text-gray-900 dark:text-white color-transition">
+            <h1 className="font-body sm:text-6xl text-5xl mb-4 text-gray-900 dark:text-white color-transition">
               {pokemonName}
             </h1>
             {/* Type Badges */}
-            <div className="flex flex-row">{typesBadges}</div>
+            <div className="flex flex-row mt-2">{typesBadges}</div>
             {/* Details */}
             <div className="grid grid-cols-2 gap-2 mt-8 font-body text-gray-700 dark:text-gray-200 text-2xl color-transition">
               <div className="border-r-2 border-gray-300 dark:border-gray-600 pr-4">
@@ -140,6 +136,7 @@ const PokemonDetail: React.FC<Props> = ({ pokemon }) => {
             {/* Stats */}
             <div className="flex flex-col w-80 mt-8">{statsList}</div>
           </div>
+          {/* Pokemon Image */}
           <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-16 md:mb-0">
             <img
               className="object-cover object-center rounded"
