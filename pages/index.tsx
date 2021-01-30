@@ -69,7 +69,7 @@ const Home: React.FC<Props> = ({ gen1, gen2 }) => {
       <StarterPokemon
         title="Starter Pokemon"
         description="Here's a list of the starter pokemon for Generation I."
-        pokemon={gen1}
+        generation={1}
       />
 
       {/* Gen 1 View All Button */}
@@ -102,7 +102,7 @@ const Home: React.FC<Props> = ({ gen1, gen2 }) => {
       <StarterPokemon
         title="Starter Pokemon"
         description="Here's a list of the starter pokemon for Generation II."
-        pokemon={gen2}
+        generation={1}
       />
 
       {/* Gen 2 View All Button */}
@@ -120,31 +120,6 @@ const Home: React.FC<Props> = ({ gen1, gen2 }) => {
       <div className="mb-20"></div>
     </div>
   );
-};
-
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const gen1Results: CallResult[] = (
-    await axios.get<PokemonListResult>(
-      "https://pokeapi.co/api/v2/pokemon?limit=9&offset=0"
-    )
-  ).data.results;
-  let gen1Pokemon: Pokemon[] = [];
-  for (let result of gen1Results) {
-    const pokemon: Pokemon = (await axios.get<Pokemon>(result.url)).data;
-    gen1Pokemon.push(pokemon);
-  }
-
-  const gen2Results: CallResult[] = (
-    await axios.get<PokemonListResult>(
-      "https://pokeapi.co/api/v2/pokemon?limit=9&offset=151"
-    )
-  ).data.results;
-  let gen2Pokemon: Pokemon[] = [];
-  for (let result of gen2Results) {
-    const pokemon: Pokemon = (await axios.get<Pokemon>(result.url)).data;
-    gen2Pokemon.push(pokemon);
-  }
-  return { props: { gen1: gen1Pokemon, gen2: gen2Pokemon } };
 };
 
 export default Home;
