@@ -9,7 +9,7 @@ interface Props {
 
 const Navbar: React.FC<Props> = ({ handleToggle, hasDarkModeEnabled }) => {
   return (
-    <nav className="py-2 px-4 border-b-2 border-gray-200 dark:border-gray-700 bg-white transition-colors duration-500 ease-out dark:bg-gray-800 shadow-lg w-full">
+    <nav className="fixed top-0 inset-x-0 z-50 py-2 px-4 border-b-2 border-gray-200 dark:border-gray-700 bg-white transition-colors duration-500 ease-out dark:bg-gray-800 shadow-lg w-full">
       <div className="flex justify-between items-center">
         {hasDarkModeEnabled ? (
           <Link href="/">

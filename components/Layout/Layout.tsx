@@ -29,7 +29,7 @@ const Layout: React.FC = ({ children }) => {
     <div
       className={[
         currentTheme === "dark" ? "dark" : "",
-        "w-full h-screen flex flex-col",
+        "w-full flex flex-col",
       ].join(" ")}
     >
       <Navbar
