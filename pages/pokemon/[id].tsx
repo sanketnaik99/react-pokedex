@@ -32,25 +32,39 @@ const PokemonDetail: React.FC<Props> = ({ pokemon }) => {
       <div className="flex mb-2 items-center justify-between">
         <div>
           <span
-            className={`text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-${colors[index]}-800 bg-${colors[index]}-100`}
+            className={[
+              "text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full",
+              `text-${colors[index]}-800`,
+              `bg-${colors[index]}-100`,
+            ].join(" ")}
           >
             {stat.stat.name}
           </span>
         </div>
         <div className="text-right">
           <span
-            className={`text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-${colors[index]}-800 dark:text-${colors[index]}-800 dark:bg-${colors[index]}-100 color-transition`}
+            className={[
+              "text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full color-transition",
+              `text-${colors[index]}-800`,
+              `dark:text-${colors[index]}-800 dark:bg-${colors[index]}-100`,
+            ].join(" ")}
           >
             {stat.base_stat}
           </span>
         </div>
       </div>
       <div
-        className={`overflow-hidden h-2 mb-4 text-xs flex rounded bg-${colors[index]}-200`}
+        className={[
+          "overflow-hidden h-2 mb-4 text-xs flex rounded",
+          `bg-${colors[index]}-200`,
+        ].join(" ")}
       >
         <div
           style={{ width: `${stat.base_stat}%` }}
-          className={`shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-${colors[index]}-500`}
+          className={[
+            "shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center",
+            `bg-${colors[index]}-500`,
+          ].join(" ")}
         ></div>
       </div>
     </div>
@@ -113,16 +127,6 @@ const PokemonDetail: React.FC<Props> = ({ pokemon }) => {
             {/* Type Badges */}
             <div className="flex flex-row">{typesBadges}</div>
             {/* Details */}
-            {/* <div className="flex flex-col mt-8">
-              <div className="flex flex-row font-body text-gray-700 dark:text-gray-200 text-2xl color-transition">
-                <div className="">Weight</div>
-                <div className="pl-4">{pokemon.weight / 10} Kg</div>
-              </div>
-              <div className="flex flex-row font-body text-gray-700 dark:text-gray-200 text-2xl color-transition">
-                <div className="">Height</div>
-                <div className="pl-4">{pokemon.height / 10} m</div>
-              </div>
-            </div> */}
             <div className="grid grid-cols-2 gap-2 mt-8 font-body text-gray-700 dark:text-gray-200 text-2xl color-transition">
               <div className="border-r-2 border-gray-300 dark:border-gray-600 pr-4">
                 Weight

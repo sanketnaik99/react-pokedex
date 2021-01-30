@@ -42,6 +42,7 @@ const Footer: React.FC<Props> = ({ hasDarkModeEnabled }) => {
             className="ml-3 text-gray-500  dark:text-gray-200 color-transition"
             href="https://twitter.com/sanketnaik99"
             target="_blank"
+            rel="noopener"
           >
             <svg
               fill="currentColor"
@@ -58,6 +59,7 @@ const Footer: React.FC<Props> = ({ hasDarkModeEnabled }) => {
             className="ml-3 text-gray-500  dark:text-gray-200 color-transition"
             href="https://instagram.com/sanketnaik99"
             target="_blank"
+            rel="noopener"
           >
             <svg
               fill="none"
@@ -76,6 +78,7 @@ const Footer: React.FC<Props> = ({ hasDarkModeEnabled }) => {
             className="ml-3 text-gray-500  dark:text-gray-200 color-transition"
             href="https://www.linkedin.com/in/sanketnaik99/"
             target="_blank"
+            rel="noopener"
           >
             <svg
               fill="currentColor"
