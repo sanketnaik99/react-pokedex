@@ -107,9 +107,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   //     const pokemon: Pokemon = (await axios.get<Pokemon>(result.url)).data;
   //     pokemonList.push(pokemon);
   //   }
-  //   return {
-  //     props: { pokemon: pokemonList, title: title, description: description },
-  //   };
+  return {
+    props: { pokemon: pokemonList, title: title, description: description },
+  };
 };
 
 export default PokemonGeneration;
