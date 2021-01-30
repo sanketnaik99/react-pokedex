@@ -73,18 +73,18 @@ const Home: React.FC<Props> = ({ gen1, gen2 }) => {
       />
 
       {/* Gen 1 View All Button */}
-      <div className="flex flex-row justify-center mt-12">
+      {/* <div className="flex flex-row justify-center mt-12">
         <div>
           <Link href="/generation/1">
-            <button
-              className="w-80 bg-gray-800 text-white dark:text-red-500 dark:bg-white color-transition font-bold uppercase px-8 py-2 rounded-lg shadow-md hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
+            <a
+              className="w-80 text-center bg-gray-800 text-white dark:text-red-500 dark:bg-white color-transition font-bold uppercase px-8 py-2 rounded-lg shadow-md hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
               type="button"
             >
               View All
-            </button>
+            </a>
           </Link>
         </div>
-      </div>
+      </div> */}
 
       {/* Generation II Hero Section */}
       <PokemonHero
@@ -106,16 +106,16 @@ const Home: React.FC<Props> = ({ gen1, gen2 }) => {
       />
 
       {/* Gen 2 View All Button */}
-      <div className="flex flex-row justify-center mt-12">
+      {/* <div className="flex flex-row justify-center mt-12">
         <Link href="/generation/2">
-          <button
-            className="w-80 bg-gray-800 text-white dark:text-red-500 dark:bg-white color-transition font-bold uppercase px-8 py-2 rounded-lg shadow-md hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
+          <a
+            className="w-80 text-center bg-gray-800 text-white dark:text-red-500 dark:bg-white color-transition font-bold uppercase px-8 py-2 rounded-lg shadow-md hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
             type="button"
           >
             View All
-          </button>
+          </a>
         </Link>
-      </div>
+      </div> */}
 
       <div className="mb-20"></div>
     </div>

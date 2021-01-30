@@ -1,5 +1,6 @@
 import axios from "axios";
 import { GetStaticPaths, GetStaticProps } from "next";
+import Head from "next/head";
 import React from "react";
 import PokemonCard from "../../components/Shared/PokemonCard";
 
@@ -19,17 +20,48 @@ const PokemonGeneration: React.FC<Props> = ({
   ));
 
   return (
-    <div className="container mt-32  mx-auto mb-12">
-      <div className="flex flex-col items-center mx-auto">
-        <h1 className="font-body sm:text-6xl md:text-5xl text-gray-800 dark:text-gray-100 color-transition">
-          {title}
-        </h1>
-        <p className="mt-4 px-4 sm:px-12 lg:px-24 font-sans text-center text-lg dark:text-gray-300 color-transition">
-          {description}
-        </p>
-      </div>
-      <div className="sm:mt-8 mt-4 grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 grid-cols-1 gap-y-4 md:gap-y-8 gap-x-8">
-        {list}
+    <div>
+      <Head>
+        <title>{title}</title>
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="title" content={title} />
+        <meta name="description" content={description} />
+
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://pokedex.sanketnaik.dev/" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta
+          property="og:image"
+          content="https://pokedex.sanketnaik.dev/assets/pokedex-banner.png"
+        />
+
+        {/* Twitter */}
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta
+          property="twitter:url"
+          content="https://pokedex.sanketnaik.dev/"
+        />
+        <meta property="twitter:title" content={title} />
+        <meta property="twitter:description" content={description} />
+        <meta
+          property="twitter:image"
+          content="https://pokedex.sanketnaik.dev/assets/pokedex-banner.png"
+        />
+      </Head>
+      <div className="container mt-32  mx-auto mb-12">
+        <div className="flex flex-col items-center mx-auto">
+          <h1 className="font-body sm:text-6xl md:text-5xl text-gray-800 dark:text-gray-100 color-transition">
+            {title}
+          </h1>
+          <p className="mt-4 px-4 sm:px-12 lg:px-24 font-sans text-center text-lg dark:text-gray-300 color-transition">
+            {description}
+          </p>
+        </div>
+        <div className="sm:mt-8 mt-4 grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 grid-cols-1 gap-y-4 md:gap-y-8 gap-x-8">
+          {list}
+        </div>
       </div>
     </div>
   );
