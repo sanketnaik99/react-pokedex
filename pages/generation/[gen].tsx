@@ -1,20 +1,118 @@
 import axios from "axios";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
-import React from "react";
+import { off } from "process";
+import React, { useEffect, useRef, useState } from "react";
+import LoadingCard from "../../components/Shared/LoadingCard";
 import PokemonCard from "../../components/Shared/PokemonCard";
 
 interface Props {
-  pokemon: Pokemon[];
+  generation: number;
+  generationMax: number;
+  generationOffset: number;
   title: string;
   description: string;
 }
 
 const PokemonGeneration: React.FC<Props> = ({
-  pokemon,
+  generation,
+  generationMax,
+  generationOffset,
   title,
   description,
 }) => {
+  const BASE_URL = "https://pokeapi.co/api/v2";
+  const defaultLimit = 12;
+  const [pokemon, setPokemon] = useState<Pokemon[]>([]);
+
+  // Loading
+  const [isLoading, setLoading] = useState(true);
+
+  // Limit
+  const [limit, setLimit] = useState(defaultLimit);
+
+  // Tracking the Offset
+  const [offset, setOffset] = useState(generationOffset);
+
+  // Tracking the Page Number
+  const [page, setPage] = useState(1);
+
+  const totalPages = Math.ceil((generationMax - generationOffset) / limit);
+
+  useEffect(() => {
+    // console.log("Page Number => ", page);
+    if (page == 1) {
+      setOffset(generationOffset);
+      setLimit(defaultLimit);
+    } else if (page < totalPages) {
+      const newOffset = generationOffset + (page - 1) * defaultLimit;
+      setOffset(newOffset);
+      setLimit(defaultLimit);
+    } else {
+      const newOffset = generationOffset + (page - 1) * defaultLimit;
+      setOffset(newOffset);
+      const newLimit = generationMax - newOffset;
+      setLimit(newLimit);
+    }
+    setLoading(true);
+  }, [page]);
+
+  useEffect(() => {
+    // console.log(`Getting Data from ${offset} to ${offset + limit}`);
+
+    // Get Pokemon Data from the Endpoint
+    async function getPokemonList(results: CallResult[]): Promise<Pokemon[]> {
+      let newPokemon: Pokemon[] = [];
+      for (const result of results) {
+        await axios
+          .get<Pokemon>(result.url)
+          .then((res) => {
+            newPokemon.push(res.data);
+          })
+          .catch((err) => console.error(err));
+      }
+      return newPokemon.sort((a, b) => a.id - b.id);
+    }
+
+    const storedData: Pokemon[] = JSON.parse(
+      localStorage.getItem(`generation_${generation}_${offset}`) || "[]"
+    );
+    if (storedData.length > 0) {
+      // console.log(
+      //   `Found stored data for Generation - ${generation} & Offset - ${offset}`
+      // );
+      setPokemon(storedData);
+      setLoading(false);
+    } else {
+      // console.log(
+      //   `No Stored Data, Making a Network Request for Generation - ${generation} & Offset - ${offset}`
+      // );
+      // Request to Fetch the data from PokeAPI.
+      axios
+        .get(`${BASE_URL}/pokemon?limit=${limit}&offset=${offset}`)
+        .then((res) => {
+          const results: CallResult[] = res.data.results;
+          getPokemonList(results)
+            .then((res) => {
+              setPokemon(res);
+              setLoading(false);
+              try {
+                localStorage.setItem(
+                  `generation_${generation}_${offset}`,
+                  JSON.stringify(res)
+                );
+              } catch (error) {
+                console.log("Storage Full! Not saving data anymore.");
+              }
+            })
+            .catch((err) => {
+              console.error(err);
+            });
+        });
+    }
+  }, [offset]);
+
+  // Map List of Pokemon
   const list = pokemon.map((pokemon) => (
     <PokemonCard key={pokemon.id} pokemon={pokemon} />
   ));
@@ -50,17 +148,52 @@ const PokemonGeneration: React.FC<Props> = ({
           content="https://pokedex.sanketnaik.dev/assets/pokedex-banner.png"
         />
       </Head>
-      <div className="container mt-32  mx-auto mb-12">
+      <div className="container mt-32 mx-auto mb-12">
         <div className="flex flex-col items-center mx-auto">
-          <h1 className="font-body sm:text-6xl md:text-5xl text-gray-800 dark:text-gray-100 color-transition">
+          <h1 className="font-body text-5xl md:text-6xl text-gray-800 dark:text-gray-100 color-transition">
             {title}
           </h1>
           <p className="mt-4 px-4 sm:px-12 lg:px-24 font-sans text-center text-lg dark:text-gray-300 color-transition">
             {description}
           </p>
         </div>
-        <div className="sm:mt-8 mt-4 grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 grid-cols-1 gap-y-4 md:gap-y-8 gap-x-8">
-          {list}
+        {isLoading ? null : (
+          <div className="sm:mt-8 mt-4 mx-2 sm:mx-auto grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 grid-cols-1 gap-y-4 md:gap-y-8 gap-x-8">
+            {list}
+          </div>
+        )}
+        {isLoading ? (
+          <div className="sm:mt-8 mt-4 grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 grid-cols-1 gap-y-4 md:gap-y-8 gap-x-8">
+            <LoadingCard />
+            <LoadingCard />
+            <LoadingCard />
+          </div>
+        ) : null}
+        <div className="flex flex-row justify-center mt-7">
+          {page === 1 ? null : (
+            <button
+              className="w-24 md:w-44 text-center mx-2 md:mx-6 bg-gray-800 text-white dark:text-red-500 dark:bg-white color-transition font-bold uppercase px-2 py-2 rounded-lg shadow-md hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
+              type="button"
+              onClick={() => {
+                window.scrollTo(0, 0);
+                setPage((page) => page - 1);
+              }}
+            >
+              Prev
+            </button>
+          )}
+          {page === totalPages ? null : (
+            <button
+              className="w-24 md:w-44 text-center mx-2 md:mx-6 bg-gray-800 text-white dark:text-red-500 dark:bg-white color-transition font-bold uppercase px-2 py-2 rounded-lg shadow-md hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
+              type="button"
+              onClick={() => {
+                window.scrollTo(0, 0);
+                setPage((page) => page + 1);
+              }}
+            >
+              Next
+            </button>
+          )}
         </div>
       </div>
     </div>
@@ -75,7 +208,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const generationOffsets = [0, 151];
-  const generationLimits = [151, 100];
+  const generationMax = [151, 251];
   const genNumber: number = +params.gen;
 
   //   Set Title and Description according to generation.
@@ -95,20 +228,14 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       games Pokémon Gold and Silver, set in the Johto region.";
   }
 
-  //   const resultList: CallResult[] = (
-  //     await axios.get<PokemonListResult>(
-  //       `https://pokeapi.co/api/v2/pokemon?limit=${
-  //         generationLimits[genNumber - 1]
-  //       }&offset=${generationOffsets[genNumber - 1]}`
-  //     )
-  //   ).data.results;
-  let pokemonList: Pokemon[] = [];
-  //   for (let result of resultList) {
-  //     const pokemon: Pokemon = (await axios.get<Pokemon>(result.url)).data;
-  //     pokemonList.push(pokemon);
-  //   }
   return {
-    props: { pokemon: pokemonList, title: title, description: description },
+    props: {
+      generation: genNumber,
+      generationMax: generationMax[genNumber - 1],
+      generationOffset: generationOffsets[genNumber - 1],
+      title: title,
+      description: description,
+    },
   };
 };
 

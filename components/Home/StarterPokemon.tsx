@@ -88,13 +88,10 @@ const StarterPokemon: React.FC<Props> = ({
         {description}
       </p>
       {isLoading ? (
-        <div className="sm:mt-8 mt-4 grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-cols-1 gap-y-4 md:gap-y-8 gap-x-8">
+        <div className="sm:mt-8 mt-4 grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 grid-cols-1 gap-y-4 md:gap-y-8 gap-x-8">
           <LoadingCard />
           <LoadingCard />
           <LoadingCard />
-          <div className="block lg:hidden xl:block">
-            <LoadingCard />
-          </div>
         </div>
       ) : (
         <div className="sm:mt-8 mt-4 grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 grid-cols-1 gap-y-4 md:gap-y-8 gap-x-8">
