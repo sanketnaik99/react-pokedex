@@ -1,36 +1,57 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/ede00c86-b1c3-4c5b-b6cd-495db637b6d6/deploy-status)](https://app.netlify.com/sites/clever-brattain-7920c0/deploys)
+![React Pokedex](docs/images/github-banner.png)
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# React Pokedex
 
-## Getting Started
+![Website](https://img.shields.io/website?logo=React&style=for-the-badge&url=https%3A%2F%2Fpokedex.sanketnaik.dev) &nbsp;&nbsp; [![Netlify Status](https://api.netlify.com/api/v1/badges/ede00c86-b1c3-4c5b-b6cd-495db637b6d6/deploy-status)](https://app.netlify.com/sites/clever-brattain-7920c0/deploys)
 
-First, run the development server:
+This project was built using the following technologies -
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+- ReactJS
+- Next.js
+- TypeScript
+- TailwindCSS
+- PokeAPI
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Contents
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+- [React Pokedex](#react-pokedex)
+  - [Contents](#contents)
+  - [Introduction](#introduction)
+  - [Home Page](#home-page)
+  - [Generation List Page](#generation-list-page)
+  - [Pokemon Detail Page](#pokemon-detail-page)
+    - [Static Site Generation](#static-site-generation)
+  - [Dark Mode](#dark-mode)
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## Introduction
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+This is a simple PokeDex application created using Next.js which is a React Framework for production. Next.js has various features that make it the ideal choice for a website with great SEO (Search Engine Optimization) and performance. Static Site Generation is a feature that Next.js comes with and it is great for generating webpages which have static content.
 
-## Learn More
+## Home Page
 
-To learn more about Next.js, take a look at the following resources:
+![Home Page](docs/images/home-page-light.png)
+The HomePage displays a brief introduction for each pokemon generation and displays the starter pokemon for each generation along with their evolution. The website uses TailwindCSS for styling and each pokemon and its details are displayed in a card. Additionally, when the data is being loaded, skeleton cards are displayed as placeholders. This helps to improve the first-paint performance of the application.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Generation List Page
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+![Generation List](docs/images/view-all.png)
+This page displays a list of all pokemon in that generation. Since there are usually more than 100 Pokemon in each generation, a pagination system is implemented which displays 12 Pokemon at a time.
+![Pagination](docs/images/pagination.png)
+As displayed above, The user can choose to navigate to the next or previous batch of pokemon when viewing the list.
 
-## Deploy on Vercel
+## Pokemon Detail Page
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+![Pokemon Detail Page](docs/images/pokemon-detail-light.png)
+This page displays additional information about the pokemon. The stats such as hp, attack, defense, speed, etc. are displayed using progress-bar style meters. These have been designed using TailwindCSS.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Static Site Generation
+
+The Pokemon Detail Page uses static site generation which is a feature of Next.js. Essentially, all the pokemon detail pages are pre-rendered at build time. This means that when you open a page to view the information about a pokemon such as [pikachu](https://pokedex.sanketnaik.dev/pokemon/25) you are actually viewing a static page. This means that no API call is made to load the information related to Pikachu and the entire page has been pre-rendered in advance.
+
+## Dark Mode
+
+TailwindCSS 2.0 includes features for implementing dark mode for applications and this has been used to make the entire application dark mode compatible. When the user taps on the dark mode toggle, all elements of the website transition from a light theme to a dark theme with a smooth transition animation. The screenshots of all pages in dark mode are provided below.
+
+![Dark Home Page](docs/images/home-page-dark.png)
+![Dark View All Page](docs/images/view-all-dark.png)
+![Dark Pokemon Details Page](docs/images/pokemon-detail-dark.png)
