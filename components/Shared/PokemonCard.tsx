@@ -53,9 +53,11 @@ const PokemonCard: React.FC<Props> = ({ pokemon }) => {
         <Link href={`/pokemon/${pokemon.id}`}>
           <a
             aria-label={`Learn More about ${pokemon.name}`}
-            className="mt-4 mb-3 py-2 px-4 mx-8 rounded-xl shadow-sm  cursor-pointer font-bold bg-gradient-to-br from-red-400 to-red-600 text-white flex flex-row justify-center hover:shadow-lg"
+            className="mt-4 mb-3 py-2 px-4 sm:mx-8 md:mx-4 mx-2 rounded-xl shadow-sm  cursor-pointer font-bold bg-gradient-to-br from-red-400 to-red-600 text-white flex flex-row justify-center hover:shadow-lg"
           >
-            Learn More
+            <span className="capitalize text-center">
+              More About {pokemon.name}
+            </span>
           </a>
         </Link>
       </div>

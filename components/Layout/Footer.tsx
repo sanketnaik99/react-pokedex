@@ -43,7 +43,9 @@ const Footer: React.FC<Props> = ({ hasDarkModeEnabled }) => {
             href="https://twitter.com/sanketnaik99"
             target="_blank"
             rel="noopener"
+            aria-label="Twitter"
           >
+            <span className="hidden">Twitter</span>
             <svg
               fill="currentColor"
               strokeLinecap="round"
@@ -60,7 +62,9 @@ const Footer: React.FC<Props> = ({ hasDarkModeEnabled }) => {
             href="https://instagram.com/sanketnaik99"
             target="_blank"
             rel="noopener"
+            aria-label="Instagram"
           >
+            <span className="hidden">Instagram</span>
             <svg
               fill="none"
               stroke="currentColor"
@@ -79,7 +83,9 @@ const Footer: React.FC<Props> = ({ hasDarkModeEnabled }) => {
             href="https://www.linkedin.com/in/sanketnaik99/"
             target="_blank"
             rel="noopener"
+            aria-label="Linked In"
           >
+            <span className="hidden">Linked In</span>
             <svg
               fill="currentColor"
               stroke="currentColor"
