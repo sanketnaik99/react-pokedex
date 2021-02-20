@@ -4,24 +4,24 @@
 
 ![Website](https://img.shields.io/website?logo=React&style=for-the-badge&url=https%3A%2F%2Fpokedex.sanketnaik.dev) &nbsp;&nbsp; [![Netlify Status](https://api.netlify.com/api/v1/badges/ede00c86-b1c3-4c5b-b6cd-495db637b6d6/deploy-status)](https://app.netlify.com/sites/clever-brattain-7920c0/deploys)
 
-This project was built using the following technologies -
-
-- ReactJS
-- Next.js
-- TypeScript
-- TailwindCSS
-- PokeAPI
-
 ## Contents
 
-- [React Pokedex](#react-pokedex)
-  - [Contents](#contents)
-  - [Introduction](#introduction)
-  - [Home Page](#home-page)
-  - [Generation List Page](#generation-list-page)
-  - [Pokemon Detail Page](#pokemon-detail-page)
-    - [Static Site Generation](#static-site-generation)
-  - [Dark Mode](#dark-mode)
+- [Technologies Used](#technologies-used)
+- [Introduction](#introduction)
+- [Home Page](#home-page)
+- [Generation List Page](#generation-list-page)
+- [Pokemon Detail Page](#pokemon-detail-page)
+  - [Static Site Generation](#static-site-generation)
+- [Dark Mode](#dark-mode)
+
+## Technologies Used
+
+| Name        | Description |
+| ----------- | ---------------- |
+| Next.js     | An open-source React front-end development web framework that enables functionality such as server-side rendering and generating static websites for React based web applications. |
+| TailwindCSS | A utility-first CSS framework packed with classes that can be composed to build any design, directly in your markup. |
+| TypeScript  | It is a strict syntactical superset of JavaScript and adds optional static typing to the language. |
+| Poke API    | An API to consume information on Pokémon, their moves, abilities, types, egg groups and much, much more.|
 
 ## Introduction
 
